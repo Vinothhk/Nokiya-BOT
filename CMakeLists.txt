@@ -36,9 +36,6 @@ install(
 )
 
 install(PROGRAMS
-  scripts/ultrasonic_read.py
-  scripts/line_follower.py
-  scripts/main.py
   DESTINATION lib/${PROJECT_NAME}
 )
 ament_package()
