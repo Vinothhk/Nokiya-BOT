@@ -1,0 +1,7 @@
+<?xml version='1.0'?>
+<launch>
+    <include file="$(find-pkg-share diffbot)/launch/world.launch.py"/>
+    <include file="$(find-pkg-share diffbot)/launch/rsp.launch.py"/>
+    <!-- Read robot_description an spawn in gazebo running sim -->
+    <include file="$(find-pkg-share diffbot)/launch/spawn_description.launch.py"/>
+</launch>
