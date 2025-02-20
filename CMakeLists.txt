@@ -30,7 +30,9 @@ install(
     launch
     worlds
     models
+    meshes
     rviz
+    config
   DESTINATION
     share/${PROJECT_NAME}/
 )
