@@ -63,13 +63,6 @@ def generate_launch_description():
     #     arguments=['0', '0', '0', '0', '0', '0', 'map', 'odom']
     # )
 
-    # remapper_node = Node(
-    #     package='bcr_bot',
-    #     executable='remapper.py',
-    #     name='remapper',
-    #     output='screen',
-    # )
-
     ld = LaunchDescription()
 
     ld.add_action(nav2_launch_cmd)

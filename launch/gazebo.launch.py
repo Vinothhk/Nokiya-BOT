@@ -15,7 +15,7 @@ def generate_launch_description():
     bot_pkg_path = get_package_share_directory("diffbot")
     world_file = LaunchConfiguration("world_file", default = join(bot_pkg_path, "worlds", "world_v1.sdf"))
     gz_sim_share = get_package_share_directory("ros_gz_sim")
-    pkg_plugin = get_package_share_directory("differential_drive_controller")
+    pkg_plugin = join(get_package_share_directory("rpmdiffdrive"),"plugins")
     gz_sim = IncludeLaunchDescription(
         PythonLaunchDescriptionSource(join(gz_sim_share, "launch", "gz_sim.launch.py")),
         launch_arguments={
@@ -50,33 +50,17 @@ def generate_launch_description():
         executable="parameter_bridge",
         arguments=[
             "/cmd_vel@geometry_msgs/msg/Twist@gz.msgs.Twist",
+            "/left_wheel_rpm@std_msgs/msg/Float32@gz.msgs.Float",
+            "/right_wheel_rpm@std_msgs/msg/Float32@gz.msgs.Float",
             "/clock@rosgraph_msgs/msg/Clock[gz.msgs.Clock",
             "/odom@nav_msgs/msg/Odometry[gz.msgs.Odometry",
             "/tf@tf2_msgs/msg/TFMessage[gz.msgs.Pose_V",
             "/scan@sensor_msgs/msg/LaserScan[gz.msgs.LaserScan",
-            # "/kinect_camera@sensor_msgs/msg/Image[gz.msgs.Image",
-            # "/stereo_camera/left/image_raw@sensor_msgs/msg/Image[gz.msgs.Image",
-            # "stereo_camera/right/image_raw@sensor_msgs/msg/Image[gz.msgs.Image",
-            # "kinect_camera/camera_info@sensor_msgs/msg/CameraInfo[gz.msgs.CameraInfo",
-            # "stereo_camera/left/camera_info@sensor_msgs/msg/CameraInfo[gz.msgs.CameraInfo",
-            # "stereo_camera/right/camera_info@sensor_msgs/msg/CameraInfo[gz.msgs.CameraInfo",
-            # "/kinect_camera/points@sensor_msgs/msg/PointCloud2[gz.msgs.PointCloudPacked",
             # "/imu@sensor_msgs/msg/Imu[gz.msgs.IMU",
             "/world/default/model/diffbot/joint_state@sensor_msgs/msg/JointState[gz.msgs.Model"
         ],
         remappings=[
             ('/world/default/model/diffbot/joint_state', 'joint_states'),
-            # ('/odom', 'diffbot/odom'),
-            # ('/scan', 'diffbot/scan'),
-            # ('/kinect_camera', 'bcr_bot/kinect_camera'),
-            # ('/stereo_camera/left/image_raw', 'bcr_bot/stereo_camera/left/image_raw'),
-            # ('/stereo_camera/right/image_raw', 'bcr_bot/stereo_camera/right/image_raw'),
-            # ('/imu', 'diffbot/imu'),
-            # ('/cmd_vel', 'diffbot/cmd_vel'),
-            # ('kinect_camera/camera_info', 'bcr_bot/kinect_camera/camera_info'),
-            # ('stereo_camera/left/camera_info', 'bcr_bot/stereo_camera/left/camera_info'),
-            # ('stereo_camera/right/camera_info', 'bcr_bot/stereo_camera/right/camera_info'),
-            # ('/kinect_camera/points', 'bcr_bot/kinect_camera/points'),
         ]
     )
 
