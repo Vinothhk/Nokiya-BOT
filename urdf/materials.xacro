@@ -53,4 +53,8 @@
         <color rgba="0.1 0.1 0.1 1"/>
     </material>
 
+    <material name ='wooden'>
+        <color rgba='0.76 0.60 0.024 1'/>
+    </material>
+
 </robot>
