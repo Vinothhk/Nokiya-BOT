@@ -18,7 +18,7 @@ def generate_launch_description():
     use_sim_time = LaunchConfiguration('use_sim_time', default='true')
 
     # Process XACRO
-    xacro_path = os.path.join(get_package_share_directory('diffbot'), 'urdf', 'two_wheel_bot.xacro') #robot-sim.xacro
+    xacro_path = os.path.join(get_package_share_directory('diffbot'), 'urdf', 'robot_sim.xacro') #robot-sim.xacro
     doc = get_xacro_to_doc(xacro_path,{})
 
     # Nodes
@@ -52,5 +52,5 @@ def generate_launch_description():
         ),
         # Nodes
         robot_state_publisher,
-        rviz
+        # rviz
     ])
