@@ -30,15 +30,14 @@ install(
     launch
     worlds
     models
+    meshes
     rviz
+    config
   DESTINATION
     share/${PROJECT_NAME}/
 )
 
 install(PROGRAMS
-  scripts/ultrasonic_read.py
-  scripts/line_follower.py
-  scripts/main.py
   DESTINATION lib/${PROJECT_NAME}
 )
 ament_package()
