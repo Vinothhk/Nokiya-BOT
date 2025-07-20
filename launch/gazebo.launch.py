@@ -56,12 +56,28 @@ def generate_launch_description():
             "/odom@nav_msgs/msg/Odometry[gz.msgs.Odometry",
             "/tf@tf2_msgs/msg/TFMessage[gz.msgs.Pose_V",
             "/scan@sensor_msgs/msg/LaserScan[gz.msgs.LaserScan",
-            # "/imu@sensor_msgs/msg/Imu[gz.msgs.IMU",
+            "/scan/points@sensor_msgs/msg/PointCloud2@gz.msgs.PointCloudPacked",
+            "/imu@sensor_msgs/msg/Imu[gz.msgs.IMU",
+            # "/camera/image@sensor_msgs/msg/Image[gz.msgs.Image",
+            # "/camera/camera_info@sensor_msgs/msg/CameraInfo[gz.msgs.CameraInfo",
+            # "/camera/points@sensor_msgs/msg/PointCloud2[gz.msgs.PointCloudPacked",
+
+            # RGBD Camera
+            "/camera/image@sensor_msgs/msg/Image@gz.msgs.Image",
+            "/camera/camera_info@sensor_msgs/msg/CameraInfo@gz.msgs.CameraInfo",
+            "/camera/depth_image@sensor_msgs/msg/Image@gz.msgs.Image",
+            "/camera/points@sensor_msgs/msg/PointCloud2@gz.msgs.PointCloudPacked",
             "/world/default/model/diffbot/joint_state@sensor_msgs/msg/JointState[gz.msgs.Model"
         ],
         remappings=[
             ('/world/default/model/diffbot/joint_state', 'joint_states'),
         ]
+    )
+
+    ros_gz_image_bridge = Node(
+        package="ros_gz_image",
+        executable="image_bridge",
+        arguments=["/camera"]
     )
 
     # Alternate node to launch ros-gz-bridge
@@ -74,7 +90,7 @@ def generate_launch_description():
     #         '-p',
     #         f'config_file:={bridge_params}',
     #     ]
-    # )
+    # )c_joint" type
 
 
     # transform_publisher = Node(
@@ -86,8 +102,8 @@ def generate_launch_description():
     #                 "--yaw", "0.0",
     #                 "--pitch", "0.0",
     #                 "--roll", "0.0",
-    #                 "--frame-id", "kinect_camera",
-    #                 "--child-frame-id", "bcr_bot/base_footprint/kinect_camera"]
+    #                 "--frame-id", "camera",
+    #                 "--child-frame-id", "bcr_bot/base_footprint/camera"]
     # )
 
 
