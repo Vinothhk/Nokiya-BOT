@@ -228,4 +228,42 @@
         <origin xyz="0.0 0.0 0.16" rpy="0.0 0.0 0.0"/>
     </joint>
 
+    <link name="camera">
+
+        <collision>
+            <origin xyz="0 0 0" rpy="0 0 0" />
+            <geometry>
+                <box size="0.07 0.3 0.09"/>
+            </geometry>
+        </collision>
+
+        <visual>
+            <origin xyz="0 0 0" rpy="0 0 0" />
+            <geometry>
+                <mesh filename="file://$(find diffbot)/meshes/camera/d415.dae"/>
+            </geometry>
+            <material name="black"/>
+        </visual>
+
+        <inertial>
+            <mass value="0.01"/>
+            <xacro:box_inertia m="0.01" x="0.07" y="0.3" z = "0.09"/>
+        </inertial>
+
+    </link>
+
+    <joint name="camera_joint" type="fixed">
+        <origin rpy="0 0 0" xyz="0.78 0 0.0428"/>
+        <parent link="base_link"/>
+        <child link="camera"/>
+    </joint>
+
+    <link name="camera_optical"/>
+
+    <joint name="camera_optical_joint" type="fixed">
+        <origin xyz="0 0 0" rpy="0 0 0"/>
+        <parent link="camera"/>
+        <child link="camera_optical"/>
+    </joint>
+
 </robot>
